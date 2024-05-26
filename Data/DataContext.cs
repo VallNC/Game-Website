@@ -1,0 +1,25 @@
+
+
+namespace Game_Website.Data
+{
+    public class DataContext : DbContext
+    {
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        {
+            
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Skill>().HasData(
+                new Skill {Id = 1,Name ="Fireball", Damage = 21},
+                new Skill {Id = 2,Name ="Frenzy", Damage = 23},
+                new Skill {Id = 3,Name ="Snowball", Damage = 24}
+            );
+            base.OnModelCreating(modelBuilder);
+        }
+        public DbSet<Character> Characters => Set<Character>();
+        public DbSet<User> Users => Set<User>();
+        public DbSet<Weapon> Weapons => Set<Weapon>();
+        public DbSet<Skill> Skills => Set<Skill>();
+    }
+}
